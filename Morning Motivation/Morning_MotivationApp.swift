@@ -6,12 +6,21 @@
 //
 
 import SwiftUI
+import FirebaseCore
+
+
 
 @main
-struct Morning_MotivationApp: App {
+struct YourApp: App {
+    init() {
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                ContentView()
+            }
         }
     }
 }
