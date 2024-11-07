@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EE15D4352CDD0C9900B1A863 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = EE15D4342CDD0C9900B1A863 /* Pow */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		EE15D41E2CDD076900B1A863 /* Morning Motivation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Morning Motivation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE15D4352CDD0C9900B1A863 /* Pow in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = "Morning Motivation";
 			packageProductDependencies = (
+				EE15D4342CDD0C9900B1A863 /* Pow */,
 			);
 			productName = "Morning Motivation";
 			productReference = EE15D41E2CDD076900B1A863 /* Morning Motivation.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = EE15D4152CDD076900B1A863;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				EE15D4332CDD0C9900B1A863 /* XCRemoteSwiftPackageReference "Pow" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EE15D41F2CDD076900B1A863 /* Products */;
 			projectDirPath = "";
@@ -322,6 +331,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EE15D4332CDD0C9900B1A863 /* XCRemoteSwiftPackageReference "Pow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EmergeTools/Pow";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EE15D4342CDD0C9900B1A863 /* Pow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE15D4332CDD0C9900B1A863 /* XCRemoteSwiftPackageReference "Pow" */;
+			productName = Pow;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EE15D4162CDD076900B1A863 /* Project object */;
 }
