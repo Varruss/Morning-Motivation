@@ -15,19 +15,24 @@ struct ContentView: View {
     @AppStorage("ColorScheme") var ColorScheme = false
     var body: some View {
         TabView {
+            CalendarView    ()
+                .preferredColorScheme(ColorScheme ? .dark: .light)
+                .tabItem {
+                    if OutlineOn == true {
+                        Label("", systemImage: "calendar.badge.clock")
+                    } else {
+                        Text("Calendar")
+                    }
+                }
             MotivationOfTheDay()
                 .preferredColorScheme(ColorScheme ? .dark : .light)
                 .tabItem {
                     if OutlineOn == true {
                         Label("", systemImage: "star")
                     } else {
-                        
                         Text("Motivation")
-                        
                     }
-                    
                 }
-            
             SettingsView()
                 .preferredColorScheme(ColorScheme ? .dark : .light)
                 .tabItem {

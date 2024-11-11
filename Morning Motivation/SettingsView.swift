@@ -37,54 +37,28 @@ struct SettingsView: View {
                 VStack {
                     Spacer()
                 Toggle("Task List", systemImage: isOn ? "square.stack.3d.up.fill" : "square.stack.3d.up.slash.fill", isOn: $isOn)
-
                     .font(.largeTitle)
-
                     .tint(.blue)
-
                     .toggleStyle(.button)
-
                     .contentTransition(.symbolEffect)
-
                     .frame(alignment: .leading)
-
                     .padding()
-
-                    
-
                 Toggle("Enhanced Look", systemImage: OutlineOn ? "livephoto" : "livephoto.slash", isOn: $OutlineOn)
-
                     .font(.largeTitle)
-
                     .tint(.blue)
-
                     .toggleStyle(.button)
-
                     .contentTransition(.symbolEffect)
-
                     .frame(alignment: .leading)
-
                 Toggle("Dark Mode", systemImage: ColorScheme ? "lightbulb.fill" : "lightbulb.slash", isOn: $ColorScheme)
-
                     .font(.largeTitle)
-
                     .tint(.blue)
-
                     .toggleStyle(.button)
-
                     .contentTransition(.symbolEffect)
-
                     .padding()
-
             }
-
         }
-
     }
-
 }
-
-
 #Preview {
     SettingsView()
 }
