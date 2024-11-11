@@ -37,31 +37,14 @@ struct ContentView: View {
                 .preferredColorScheme(ColorScheme ? .dark : .light)
                 .tabItem {
                     if OutlineOn == true {
-
                         Label("", systemImage: "gear")
-                        
                     } else {
-                        
                         Text("Settings")
-                        
                     }
-                    
                 }
-            
-            
-            
-            
-            
         }
-        
-        
-        
     }
-    
 }
-
-
-
 #Preview {
     ContentView()
 }

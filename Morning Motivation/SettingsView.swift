@@ -13,6 +13,7 @@ struct SettingsView: View {
     @AppStorage("isOn") var isOn = true
     @AppStorage("OutlineOn") var OutlineOn = true
     @AppStorage("ColorScheme") var ColorScheme = false
+    @AppStorage("Submit") var Submit = true
     var body: some View {
             ZStack{
                 if OutlineOn == true {
@@ -33,9 +34,6 @@ struct SettingsView: View {
                         .bold()
                         .padding(35)
                     Spacer()
-                }
-                VStack {
-                    Spacer()
                 Toggle("Task List", systemImage: isOn ? "square.stack.3d.up.fill" : "square.stack.3d.up.slash.fill", isOn: $isOn)
                     .font(.largeTitle)
                     .tint(.blue)
@@ -55,6 +53,12 @@ struct SettingsView: View {
                     .toggleStyle(.button)
                     .contentTransition(.symbolEffect)
                     .padding()
+                    Toggle("Suggest a Quote", systemImage: Submit ? "icloud.and.arrow.up.fill" : "icloud.slash.fill", isOn: $Submit)
+                        .font(.largeTitle)
+                        .tint(.blue)
+                        .toggleStyle(.button)
+                        .contentTransition(.symbolEffect)
+                    Text(" ")
             }
         }
     }
