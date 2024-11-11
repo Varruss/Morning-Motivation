@@ -7,17 +7,55 @@
 
 import SwiftUI
 
+
+
 struct ContentView: View {
+    
+    @AppStorage("OutlineOn") var OutlineOn = true
+    @AppStorage("ColorScheme") var ColorScheme = false
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            MotivationOfTheDay()
+                .preferredColorScheme(ColorScheme ? .dark : .light)
+                .tabItem {
+                    if OutlineOn == true {
+                        Label("", systemImage: "star")
+                    } else {
+                        
+                        Text("Motivation")
+                        
+                    }
+                    
+                }
+            
+            SettingsView()
+                .preferredColorScheme(ColorScheme ? .dark : .light)
+                .tabItem {
+                    if OutlineOn == true {
+
+                        Label("", systemImage: "gear")
+                        
+                    } else {
+                        
+                        Text("Settings")
+                        
+                    }
+                    
+                }
+            
+            
+            
+            
+            
         }
-        .padding()
+        
+        
+        
     }
+    
 }
+
+
 
 #Preview {
     ContentView()
