@@ -17,14 +17,14 @@ struct SettingsView: View {
             ZStack{
                 if OutlineOn == true {
                     RoundedRectangle(cornerRadius: 65)
-                        .stroke(Color.indigo, lineWidth: 15)
+                        .stroke(Color.cyan, lineWidth: 15)
                         .ignoresSafeArea()
                         .background(
                             RoundedRectangle(cornerRadius: 65)
                                 .fill(Color.clear)
                                 .ignoresSafeArea()
                         )
-                        .shadow(color: Color.indigo.opacity(1), radius: 15, x: 0, y: 0)
+                        .shadow(color: Color.blue.opacity(1), radius: 15, x: 0, y: 0)
                         .ignoresSafeArea()
                 }
                 VStack {
@@ -40,7 +40,7 @@ struct SettingsView: View {
 
                     .font(.largeTitle)
 
-                    .tint(.indigo)
+                    .tint(.blue)
 
                     .toggleStyle(.button)
 
@@ -56,7 +56,7 @@ struct SettingsView: View {
 
                     .font(.largeTitle)
 
-                    .tint(.indigo)
+                    .tint(.blue)
 
                     .toggleStyle(.button)
 
@@ -68,7 +68,7 @@ struct SettingsView: View {
 
                     .font(.largeTitle)
 
-                    .tint(.indigo)
+                    .tint(.blue)
 
                     .toggleStyle(.button)
 
