@@ -21,9 +21,9 @@ struct MotivationOfTheDay: View {
     @AppStorage("lastResetDate") private var lastResetDate: Date = Date()
     
     @State private var tasks = [
-        Task(name: "Read a book", isCompleted: false),
+        Task(name: "Read for 30 Minutes", isCompleted: false),
         Task(name: "Exercise", isCompleted: false),
-        Task(name: "Write in journal", isCompleted: false)
+        Task(name: "Go Outside", isCompleted: false)
     ]
     
     var body: some View {
@@ -60,15 +60,16 @@ struct MotivationOfTheDay: View {
                                 Button(action: {
                                     tasks[index].isCompleted.toggle()
                                 }) {
-                                    Image(systemName: tasks[index].isCompleted ? "checkmark.circle.fill" : "circle")
-                                        .foregroundColor(tasks[index].isCompleted ? .green : .gray)
+                                    Image(systemName: tasks[index].isCompleted ? "checkmark.square.fill" : "square.fill")
+                                        .foregroundColor(tasks[index].isCompleted ? .blue : .gray)
                                 }
                             }
                             .padding()
                         }
                     }
+                    .frame(width:300)
                     .padding()
-                    Spacer()
+                    .bold()
                 }
             }
             .onAppear(perform: checkForDailyReset)
