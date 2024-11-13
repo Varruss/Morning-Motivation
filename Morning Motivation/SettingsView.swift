@@ -34,6 +34,20 @@ struct SettingsView: View {
                         .bold()
                         .padding(35)
                     Spacer()
+                    NavigationView {
+                        VStack {
+                          
+                            NavigationLink(destination: SubmitQuoteView()) {
+                                
+                                Image(systemName: "icloud.and.arrow.up.fill")
+                                    .resizable()
+                                    .frame(width: 50, height: 40)
+                                Text("Submit a Quote")
+                                    .font(.largeTitle)
+                            }
+                        }
+                    }
+                    .frame(width: 320, height: 110)
                 Toggle("Task List", systemImage: isOn ? "square.stack.3d.up.fill" : "square.stack.3d.up.slash.fill", isOn: $isOn)
                     .font(.largeTitle)
                     .tint(.blue)
@@ -41,28 +55,30 @@ struct SettingsView: View {
                     .contentTransition(.symbolEffect)
                     .frame(alignment: .leading)
                     .padding()
+                    Spacer()
+                        .frame(height: 35)
                 Toggle("Enhanced Look", systemImage: OutlineOn ? "livephoto" : "livephoto.slash", isOn: $OutlineOn)
                     .font(.largeTitle)
                     .tint(.blue)
                     .toggleStyle(.button)
                     .contentTransition(.symbolEffect)
                     .frame(alignment: .leading)
+                    Spacer()
+                        .frame(height: 30)
                 Toggle("Dark Mode", systemImage: ColorScheme ? "lightbulb.fill" : "lightbulb.slash", isOn: $ColorScheme)
                     .font(.largeTitle)
                     .tint(.blue)
                     .toggleStyle(.button)
                     .contentTransition(.symbolEffect)
                     .padding()
-                    Toggle("Suggest a Quote", systemImage: Submit ? "icloud.and.arrow.up.fill" : "icloud.slash.fill", isOn: $Submit)
-                        .font(.largeTitle)
-                        .tint(.blue)
-                        .toggleStyle(.button)
-                        .contentTransition(.symbolEffect)
-                    Text(" ")
+                    Spacer()
+                        .frame(height: -10)
+                    
+                   
             }
         }
     }
 }
 #Preview {
-    SettingsView()
+    ContentView()
 }
