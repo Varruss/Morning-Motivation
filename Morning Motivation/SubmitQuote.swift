@@ -39,6 +39,7 @@ struct SubmitQuoteView: View {
                     // to Firebase
                 }
                 .padding()
+                .disabled(newQuote.isEmpty)
             }
         }
     }
