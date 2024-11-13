@@ -34,12 +34,20 @@ struct SubmitQuoteView: View {
                 TextField("Enter your quote here", text: $newQuote)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-                
-                Button("Submit") {
-                    // to Firebase
+                Button(action: {
+                    // to firebase
+                }) {
+                    Text("Submit")
+                        .font(.title2)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                 }
                 .padding()
                 .disabled(newQuote.isEmpty)
+                .opacity(newQuote.isEmpty ? 0.5 : 1.0)
             }
         }
     }
