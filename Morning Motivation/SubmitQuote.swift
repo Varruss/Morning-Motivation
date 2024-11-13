@@ -34,7 +34,6 @@ struct SubmitQuoteView: View {
                 TextField("Enter your quote here", text: $newQuote)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-                
                 Button(action: {
                     // to firebase
                 }) {
