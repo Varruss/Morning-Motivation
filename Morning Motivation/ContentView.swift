@@ -15,7 +15,7 @@ struct ContentView: View {
     @AppStorage("ColorScheme") var ColorScheme = false
     var body: some View {
         TabView {
-            CalendarView    ()
+            CalendarView()
                 .preferredColorScheme(ColorScheme ? .dark: .light)
                 .tabItem {
                     if OutlineOn == true {
@@ -33,15 +33,25 @@ struct ContentView: View {
                         Text("Motivation")
                     }
                 }
-            SettingsView()
+            
+            SubmitQuoteView()
                 .preferredColorScheme(ColorScheme ? .dark : .light)
                 .tabItem {
                     if OutlineOn == true {
-                        Label("", systemImage: "gear")
+                        Label("", systemImage: "tree")
                     } else {
-                        Text("Settings")
+                        Text("Suggestion")
                     }
                 }
+            SettingsView()
+                            .preferredColorScheme(ColorScheme ? .dark : .light)
+                            .tabItem {
+                                if OutlineOn == true {
+                                    Label("", systemImage: "gear")
+                                } else {
+                                    Text("Settings")
+                                }
+                            }
         }
     }
 }

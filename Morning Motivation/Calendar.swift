@@ -31,6 +31,10 @@ struct CalendarView: View {
                     .bold()
                     .padding(35)
                 Spacer()
+                Text("Future Calendar")
+                    .bold()
+                    .font(.title)
+                Spacer()
             }
         }
     }
