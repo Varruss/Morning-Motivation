@@ -56,7 +56,7 @@ struct SettingsView: View {
                     .contentTransition(.symbolEffect)
                     .padding()
                     Spacer()
-                        .frame(height: -10)
+                        .frame(height: 0)
                     
                    
             }
