@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct SettingsView: View {
     @AppStorage("isOn") var isOn = true
     @AppStorage("OutlineOn") var OutlineOn = true
@@ -34,20 +32,6 @@ struct SettingsView: View {
                         .bold()
                         .padding(35)
                     Spacer()
-                    NavigationView {
-                        VStack {
-                          
-                            NavigationLink(destination: SubmitQuoteView()) {
-                                
-                                Image(systemName: "icloud.and.arrow.up.fill")
-                                    .resizable()
-                                    .frame(width: 50, height: 40)
-                                Text("Submit a Quote")
-                                    .font(.largeTitle)
-                            }
-                        }
-                    }
-                    .frame(width: 320, height: 110)
                 Toggle("Task List", systemImage: isOn ? "square.stack.3d.up.fill" : "square.stack.3d.up.slash.fill", isOn: $isOn)
                     .font(.largeTitle)
                     .tint(.blue)
