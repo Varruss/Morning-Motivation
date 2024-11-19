@@ -44,14 +44,14 @@ struct ContentView: View {
                     }
                 }
             SettingsView()
-                            .preferredColorScheme(ColorScheme ? .dark : .light)
-                            .tabItem {
-                                if OutlineOn == true {
-                                    Label("", systemImage: "gear")
-                                } else {
-                                    Text("Settings")
-                                }
-                            }
+                .preferredColorScheme(ColorScheme ? .dark : .light)
+                .tabItem {
+                    if OutlineOn == true {
+                        Label("", systemImage: "gear")
+                    } else {
+                        Text("Settings")
+                    }
+                }
         }
     }
 }
