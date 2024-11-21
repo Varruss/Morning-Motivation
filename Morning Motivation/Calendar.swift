@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CalendarView: View {
+    @State var date = Date()
+        @State var todaysDate = Date.now
     @AppStorage("isOn") var isOn = true
     @AppStorage("OutlineOn") var OutlineOn = true
     @AppStorage("ColorScheme") var ColorScheme = false
@@ -26,20 +28,19 @@ struct CalendarView: View {
                     .ignoresSafeArea()
             }
             VStack{
-                Text("Calendar")
-                    .font(.largeTitle)
-                    .bold()
-                    .padding(35)
-                Spacer()
-                Text("Future Calendar")
-                    .bold()
-                    .font(.title)
-                Spacer()
+                DatePicker(selection: $date, displayedComponents: [.date]) {
+                              Text("Start Date")
+                              Text("Select the starting date for the event")
+                          }
+                .position(x: 200, y: 110)
+                      .datePickerStyle(.graphical)
+                          //.ignoresSafeArea()
+                          
             }
         }
     }
 }
 
 #Preview {
-    CalendarView()
+    ContentView()
 }

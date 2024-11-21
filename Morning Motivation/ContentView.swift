@@ -34,15 +34,7 @@ struct ContentView: View {
                     }
                 }
             
-            SubmitQuoteView()
-                .preferredColorScheme(ColorScheme ? .dark : .light)
-                .tabItem {
-                    if OutlineOn == true {
-                        Label("", systemImage: "tree")
-                    } else {
-                        Text("Suggestion")
-                    }
-                }
+           
             SettingsView()
                 .preferredColorScheme(ColorScheme ? .dark : .light)
                 .tabItem {
