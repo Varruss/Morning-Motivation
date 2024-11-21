@@ -47,7 +47,6 @@ struct MotivationOfTheDay: View {
                     .font(.largeTitle)
                     .padding(35)
                 Spacer()
-                
                 if isOn {
                     VStack {
                         ForEach(tasks.indices, id: \.self) { index in
