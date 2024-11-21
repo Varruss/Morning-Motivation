@@ -25,7 +25,7 @@ struct MotivationOfTheDay: View {
         Task(name: "Exercise", isCompleted: false),
         Task(name: "Go Outside", isCompleted: false)
     ]
-    
+    @ObservedObject private var model = QuoteViewModel()
     var body: some View {
         ZStack {
             if OutlineOn {
@@ -46,6 +46,11 @@ struct MotivationOfTheDay: View {
                     .bold()
                     .font(.largeTitle)
                     .padding(35)
+                Spacer()
+                
+                List(model.quotes, id: \.self) { item in
+                    Text(item.quote)
+                }
                 Spacer()
                 if isOn {
                     VStack {
@@ -75,7 +80,13 @@ struct MotivationOfTheDay: View {
             .onAppear(perform: checkForDailyReset)
         }
     }
+<<<<<<< Updated upstream
 
+=======
+    init() {
+        model.getData()
+    }
+>>>>>>> Stashed changes
     private func checkForDailyReset() {
         let calendar = Calendar.current
         if !calendar.isDateInToday(lastResetDate) {
