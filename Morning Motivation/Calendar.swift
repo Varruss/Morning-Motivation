@@ -32,9 +32,15 @@ struct CalendarView: View {
                               Text("Start Date")
                               Text("Select the starting date for the event")
                           }
-                .position(x: 200, y: 110)
-                      .datePickerStyle(.graphical)
-                          //.ignoresSafeArea()
+//                .position(x: 200, y: 110)
+                .datePickerStyle(.graphical)
+                .frame(width: 325)
+                .padding()
+                
+                Text("Motivation Gonna be right Here Soon")
+                    .bold()
+                    .font(.largeTitle)
+                    .padding()
                           
             }
         }
