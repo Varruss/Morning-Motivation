@@ -12,6 +12,8 @@ struct SettingsView: View {
     @AppStorage("OutlineOn") var OutlineOn = true
     @AppStorage("ColorScheme") var ColorScheme = false
     @AppStorage("Submit") var Submit = true
+    @State var showingAlert = false
+    @State var newQuote: String = ""
     var body: some View {
             ZStack{
                 if OutlineOn == true {
@@ -32,6 +34,23 @@ struct SettingsView: View {
                         .bold()
                         .padding(35)
                     Spacer()
+                    Toggle("Submit a Quote", systemImage: isOn ? "tree" : "square.stack.3d.up.fill", isOn: $showingAlert)
+                        .alert("Submit Your Own Quote", isPresented: $showingAlert) {
+                            TextField("type quote here...", text: $newQuote)
+                               
+                                                   .font(.custom("Arial", size: 16))
+                                .frame(width: 50, height: 30)
+                            Button("OK", action: submitAQuote)
+                                   Button("Cancel", role: .cancel) { }
+                               }
+                        .font(.largeTitle)
+                        .tint(.blue)
+                        .toggleStyle(.button)
+                        .contentTransition(.symbolEffect)
+                        .frame(alignment: .leading)
+                        .padding()
+                        Spacer()
+                            .frame(height: 25)
                 Toggle("Task List", systemImage: isOn ? "square.stack.3d.up.fill" : "square.stack.3d.up.slash.fill", isOn: $isOn)
                     .font(.largeTitle)
                     .tint(.blue)
@@ -61,6 +80,9 @@ struct SettingsView: View {
                    
             }
         }
+    }
+    func submitAQuote(){
+        
     }
 }
 #Preview {
