@@ -54,6 +54,7 @@ struct MotivationOfTheDay: View {
                             HStack {
                                 Text(tasks[index].name)
                                     .strikethrough(tasks[index].isCompleted)
+                                    .foregroundColor(tasks[index].isCompleted ? .gray : .primary) // Change text color
                                 
                                 Spacer()
                                 
@@ -75,6 +76,7 @@ struct MotivationOfTheDay: View {
             .onAppear(perform: checkForDailyReset)
         }
     }
+
     private func checkForDailyReset() {
         let calendar = Calendar.current
         if !calendar.isDateInToday(lastResetDate) {

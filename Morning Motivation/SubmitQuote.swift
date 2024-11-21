@@ -34,6 +34,7 @@ struct SubmitQuoteView: View {
                 TextField("Enter your quote here", text: $newQuote)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
+                    .frame(width: 350)
                 Button(action: {
                     // to firebase
                 }) {
@@ -44,7 +45,9 @@ struct SubmitQuoteView: View {
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(10)
+
                 }
+                .frame(width: 325)
                 .padding()
                 .disabled(newQuote.isEmpty)
                 .opacity(newQuote.isEmpty ? 0.5 : 1.0)
