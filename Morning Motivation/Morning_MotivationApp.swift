@@ -27,8 +27,7 @@ struct MorningMotivation: App {
   var body: some Scene {
     WindowGroup {
       NavigationView {
-       // ContentView()
-          ReadView()
+       ContentView()
       }
     }
   }
