@@ -25,7 +25,8 @@ struct MotivationOfTheDay: View {
         Task(name: "Exercise", isCompleted: false),
         Task(name: "Go Outside", isCompleted: false)
     ]
-   // @ObservedObject private var model = QuoteViewModel()
+
+    @StateObject var viewModel = ReadViewModel()
 
     var body: some View {
         ZStack {
@@ -49,15 +50,16 @@ struct MotivationOfTheDay: View {
                     .padding(35)
                 Spacer()
                 
-//                List(model.quotes, id: \.self) { item in
-//                    VStack {
-//                        Text(item.quote)
-//                        Text(item.name)
-//                    }
-//                }
-//                .onAppear {
-//                    self.model.fetchData()
-//                }
+                if viewModel.value != nil {
+                    Text(viewModel.value!)
+                                  .padding()
+                                  
+                } else {
+                    Text("Display value")
+                                  .padding()
+                                 
+                }
+
                 Spacer()
                 if isOn {
                     VStack {
@@ -85,6 +87,9 @@ struct MotivationOfTheDay: View {
                 }
             }
             .onAppear(perform: checkForDailyReset)
+            .onAppear {
+                viewModel.readValue()
+            }
         }
     }
 
