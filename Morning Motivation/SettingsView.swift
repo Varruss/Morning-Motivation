@@ -22,63 +22,123 @@ struct SettingsView: View {
                     .stroke(Color.cyan, lineWidth: 15)
                     .ignoresSafeArea()
                     .background(
-                        RoundedRectangle(cornerRadius: 65)
-                            .fill(Color.clear)
-                            .ignoresSafeArea()
+                        VStack{
+                            NavigationView{
+                                Form{
+                                    Section(header: Text("Display"),
+                                            footer: Text("Dark mode will override system preferences.")){
+                                        
+                                        Toggle("Enhanced Look", systemImage: OutlineOn ? "livephoto" : "livephoto.slash", isOn: $OutlineOn)
+                                            .tint(.blue)
+                                        
+                                        
+                                        Toggle("Dark Mode", systemImage: ColorScheme ? "lightbulb" : "lightbulb.slash", isOn: $ColorScheme)
+                                            .tint(.blue)
+                                        
+                                    }
+                                    Section(header: Text("Features"),
+                                            footer: Text("Turning on notifications allows us to send you reminders everday when the next motivation is available.")){
+                                        Toggle("Task List", systemImage: isOn ? "square.stack.3d.up.fill" : "square.stack.3d.up.slash.fill", isOn: $isOn)
+                                            .tint(.blue)
+                                        Toggle("Notifications", systemImage: Notifications ? "bell" : "bell.slash", isOn: $Notifications)
+                                            .tint(.blue)
+                                        
+                                        
+                                    }
+                                    Section {
+                                        Button(action: {
+                                            submitAQuote()
+                                            showingAlert.toggle()
+                                        }, label: {
+                                            HStack{
+                                                Image(systemName: "link")
+                                                Text("Submit a Quote")
+                                            }
+                                        })
+                                        .alert("Submit Your Own Quote", isPresented: $showingAlert) {
+                                            TextField("type quote here...", text: $newQuote)
+                                            
+                                                .font(.custom("Arial", size: 16))
+                                                .frame(width: 50, height: 30)
+                                            Button("OK", action: submitAQuote)
+                                            Button("Cancel", role: .cancel) { }
+                                        }
+                                        
+                                    }
+                                    .foregroundColor(ColorScheme ? .white : .black)
+                                    .font(.system(size: 16, weight: .semibold))
+                                    
+                                }
+                                
+                                .navigationTitle("Settings")
+                                
+                            }
+                            // .padding()
+                            
+                        }
+                        
                     )
                     .shadow(color: Color.blue.opacity(1), radius: 15, x: 0, y: 0)
                     .ignoresSafeArea()
             }
-            VStack{ NavigationView{
-                Form{
-                    Section(header: Text("Display"),
-                            footer: Text("Dark mode will override system preferences.")){
-                        
-                        Toggle("Enhanced Look", systemImage: OutlineOn ? "livephoto" : "livephoto.slash", isOn: $OutlineOn)
-                            .tint(.blue)
-
-                           
-                        Toggle("Dark Mode", systemImage: ColorScheme ? "lightbulb" : "lightbulb.slash", isOn: $ColorScheme)
-                            .tint(.blue)
-                        
-                    }
-                    Section(header: Text("Features"),
-                            footer: Text("Turning on notifications allows us to send you reminders everday when the next motivation is available.")){
-                        Toggle("Task List", systemImage: isOn ? "square.stack.3d.up.fill" : "square.stack.3d.up.slash.fill", isOn: $isOn)
-                            .tint(.blue)
-                        Toggle("Notifications", systemImage: Notifications ? "bell" : "bell.slash", isOn: $Notifications)
-                            .tint(.blue)
-                        
-                        
-                    }
-                    Section {
-                        Button(action: {
-                            submitAQuote()
-                            showingAlert.toggle()
-                        }, label: {
-                            HStack{
-                                Image(systemName: "link")
-                                Text("Submit a Quote")
+            else {
+                VStack{
+                    NavigationView{
+                        Form{
+                            Section(header: Text("Display"),
+                                    footer: Text("Dark mode will override system preferences.")){
+                                
+                                Toggle("Enhanced Look", systemImage: OutlineOn ? "livephoto" : "livephoto.slash", isOn: $OutlineOn)
+                                    .tint(.blue)
+                                
+                                
+                                Toggle("Dark Mode", systemImage: ColorScheme ? "lightbulb" : "lightbulb.slash", isOn: $ColorScheme)
+                                    .tint(.blue)
+                                
                             }
-                        })
-                        .alert("Submit Your Own Quote", isPresented: $showingAlert) {
-                            TextField("type quote here...", text: $newQuote)
+                            Section(header: Text("Features"),
+                                    footer: Text("Turning on notifications allows us to send you reminders everday when the next motivation is available.")){
+                                Toggle("Task List", systemImage: isOn ? "square.stack.3d.up.fill" : "square.stack.3d.up.slash.fill", isOn: $isOn)
+                                    .tint(.blue)
+                                Toggle("Notifications", systemImage: Notifications ? "bell" : "bell.slash", isOn: $Notifications)
+                                    .tint(.blue)
+                                
+                                
+                            }
+                            Section {
+                                Button(action: {
+                                    submitAQuote()
+                                    showingAlert.toggle()
+                                }, label: {
+                                    HStack{
+                                        Image(systemName: "link")
+                                        Text("Submit a Quote")
+                                    }
+                                })
+                                .alert("Submit Your Own Quote", isPresented: $showingAlert) {
+                                    TextField("type quote here...", text: $newQuote)
+                                    
+                                        .font(.custom("Arial", size: 16))
+                                        .frame(width: 50, height: 30)
+                                    Button("OK", action: submitAQuote)
+                                    Button("Cancel", role: .cancel) { }
+                                }
+                                
+                            }
+                            .foregroundColor(ColorScheme ? .white : .black)
+                            .font(.system(size: 16, weight: .semibold))
                             
-                                .font(.custom("Arial", size: 16))
-                                .frame(width: 50, height: 30)
-                            Button("OK", action: submitAQuote)
-                            Button("Cancel", role: .cancel) { }
                         }
                         
+                        .navigationTitle("Settings")
+                        
                     }
-                    .foregroundColor(ColorScheme ? .white : .black)
-                    .font(.system(size: 16, weight: .semibold))
+                    // .padding()
+                    
                 }
-                
-                .navigationTitle("Settings")
-            }
             }
         }
+     
     }
     func submitAQuote(){
         
