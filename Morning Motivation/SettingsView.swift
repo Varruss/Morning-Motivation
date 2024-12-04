@@ -15,6 +15,8 @@ struct SettingsView: View {
     @AppStorage("Notifications") var Notifications = false
     @State var showingAlert = false
     @State var newQuote: String = ""
+    @State private var selectedOption: String = "Completed Tasks"
+    @State private var dropDown = false
     var body: some View {
         ZStack{
             if OutlineOn == true {
@@ -36,14 +38,30 @@ struct SettingsView: View {
                                             .tint(.blue)
                                         
                                     }
-                                    Section(header: Text("Features"),
-                                            footer: Text("Turning on notifications allows us to send you reminders everday when the next motivation is available.")){
+                                    Section(header: Text("Task List"),
+                                            footer: Text("Modifications to these settings will take place on the task list inside of the motivation view")){
                                         Toggle("Task List", systemImage: isOn ? "square.stack.3d.up.fill" : "square.stack.3d.up.slash.fill", isOn: $isOn)
                                             .tint(.blue)
+                                        Menu {
+                                            Button(action: {}, label: {
+                                                                     
+                                                                          
+                                                                         
+                                                                  })
+                                                                 
+                                                              } label: {
+                                                                  Label(selectedOption, systemImage: "chevron.down")
+                                                                      
+                                                                      
+                                                                      
+                                                              }
+                
+                                        
+                                    }
+                                    Section(header: Text("Features"),
+                                            footer: Text("Turning on notifications allows us to send you reminders everday when the next motivation is available.")){
                                         Toggle("Notifications", systemImage: Notifications ? "bell" : "bell.slash", isOn: $Notifications)
                                             .tint(.blue)
-                                        
-                                        
                                     }
                                     Section {
                                         Button(action: {
