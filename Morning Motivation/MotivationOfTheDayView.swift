@@ -19,7 +19,23 @@ struct MotivationOfTheDay: View {
     @AppStorage("OutlineOn") var OutlineOn = true
     @AppStorage("ColorScheme") var ColorScheme = false
     @AppStorage("lastResetDate") private var lastResetDate: Date = Date()
-    
+    @AppStorage("textColor") var textColor = "black"
+    @AppStorage("BorderColor") var borderColor = "cyan"
+    private let colorDictionary: [String: Color] = [
+           "black": .black,
+           "white": .white,
+           "gray": .gray,
+           "red": .red,
+           "orange": .orange,
+           "yellow": .yellow,
+           "green": .green,
+           "blue": .blue,
+           "indigo": .indigo,
+           "purple": .purple,
+           "pink": .pink,
+           "cyan": .cyan,
+           "teal": .teal
+       ]
     @State private var tasks = [
         Task(name: "Read for 30 Minutes", isCompleted: false),
         Task(name: "Exercise", isCompleted: false),
@@ -32,19 +48,20 @@ struct MotivationOfTheDay: View {
         ZStack {
             if OutlineOn {
                 RoundedRectangle(cornerRadius: 65)
-                    .stroke(Color.cyan, lineWidth: 15)
+                    .stroke(colorDictionary[borderColor] ?? .cyan, lineWidth: 15)
                     .ignoresSafeArea()
                     .background(
                         RoundedRectangle(cornerRadius: 65)
                             .fill(Color.clear)
                             .ignoresSafeArea()
                     )
-                    .shadow(color: Color.blue.opacity(1), radius: 15, x: 0, y: 0)
+                    .shadow(color: colorDictionary[borderColor] ?? .cyan, radius: 15, x: 0, y: 0)
                     .ignoresSafeArea()
             }
             
             VStack {
                 Text("Motivation")
+                    .foregroundColor(colorDictionary[textColor] ?? .black)
                     .bold()
                     .font(.largeTitle)
                     .padding(35)
@@ -66,16 +83,15 @@ struct MotivationOfTheDay: View {
                         ForEach(tasks.indices, id: \.self) { index in
                             HStack {
                                 Text(tasks[index].name)
-                                    .strikethrough(tasks[index].isCompleted)
-                                    .foregroundColor(tasks[index].isCompleted ? .gray : .primary) // Change text color
-                                
-                                Spacer()
-                                
-                                Button(action: {
+                .strikethrough(tasks[index].isCompleted)
+                .opacity(tasks[index].isCompleted ? 0.5 : 1.0)
+                .foregroundColor(colorDictionary[textColor] ?? .black)
+                Spacer()
+                Button(action: {
                                     tasks[index].isCompleted.toggle()
                                 }) {
-                                    Image(systemName: tasks[index].isCompleted ? "checkmark.square.fill" : "square.fill")
-                                        .foregroundColor(tasks[index].isCompleted ? .blue : .gray)
+                Image(systemName: tasks[index].isCompleted ? "checkmark.square.fill" : "square.fill")
+                        .foregroundColor(tasks[index].isCompleted ? .blue : .gray)
                                 }
                             }
                             .padding()

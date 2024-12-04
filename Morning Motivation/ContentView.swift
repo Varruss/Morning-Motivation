@@ -33,8 +33,15 @@ struct ContentView: View {
                         Text("Motivation")
                     }
                 }
-            
-           
+            ChangeColorView()
+                .preferredColorScheme(ColorScheme ? .dark: .light)
+                .tabItem {
+                    if OutlineOn == true {
+                        Label("", systemImage: "paintbrush")
+                    } else {
+                        Text("Customize")
+                    }
+                }
             SettingsView()
                 .preferredColorScheme(ColorScheme ? .dark : .light)
                 .tabItem {

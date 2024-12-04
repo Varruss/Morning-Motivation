@@ -5,6 +5,7 @@ struct ChangeColorView: View {
     @AppStorage("OutlineOn") var OutlineOn = true
     @AppStorage("ColorScheme") var ColorScheme = false
     @AppStorage("textColor") var textColor = "black"
+    @AppStorage("BorderColor") var borderColor = "cyan"
     private let colorDictionary: [String: Color] = [
            "black": .black,
            "white": .white,
@@ -24,14 +25,14 @@ struct ChangeColorView: View {
         ZStack {
             if OutlineOn {
                 RoundedRectangle(cornerRadius: 65)
-                    .stroke(Color.cyan, lineWidth: 15)
+                    .stroke(colorDictionary[borderColor] ?? .cyan, lineWidth: 15)
                     .ignoresSafeArea()
                     .background(
                         RoundedRectangle(cornerRadius: 65)
                             .fill(Color.clear)
                             .ignoresSafeArea()
                     )
-                    .shadow(color: Color.blue.opacity(1), radius: 15, x: 0, y: 0)
+                    .shadow(color: colorDictionary[borderColor] ?? .cyan, radius: 15, x: 0, y: 0)
                     .ignoresSafeArea()
             }
             VStack{
@@ -48,6 +49,18 @@ struct ChangeColorView: View {
                     }
                 } label: {
                     Label("Text Color", systemImage: "arrow.down.circle")
+                        .foregroundColor(colorDictionary[textColor] ?? .black)
+                        .font(.system(size: 35))
+                        .padding()
+                }
+                Menu {
+                    ForEach(colorDictionary.keys.sorted(), id: \.self) { colorKey in
+                        Button(colorKey.capitalized) {
+                            borderColor = colorKey
+                        }
+                    }
+                } label: {
+                    Label("Border Color", systemImage: "arrow.down.circle")
                         .foregroundColor(colorDictionary[textColor] ?? .black)
                         .font(.system(size: 35))
                         .padding()

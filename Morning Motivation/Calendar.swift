@@ -13,18 +13,35 @@ struct CalendarView: View {
     @AppStorage("isOn") var isOn = true
     @AppStorage("OutlineOn") var OutlineOn = true
     @AppStorage("ColorScheme") var ColorScheme = false
+    @AppStorage("textColor") var textColor = "black"
+    @AppStorage("BorderColor") var borderColor = "cyan"
+    private let colorDictionary: [String: Color] = [
+           "black": .black,
+           "white": .white,
+           "gray": .gray,
+           "red": .red,
+           "orange": .orange,
+           "yellow": .yellow,
+           "green": .green,
+           "blue": .blue,
+           "indigo": .indigo,
+           "purple": .purple,
+           "pink": .pink,
+           "cyan": .cyan,
+           "teal": .teal
+       ]
     var body: some View {
         ZStack{
             if OutlineOn == true {
                 RoundedRectangle(cornerRadius: 65)
-                    .stroke(Color.cyan, lineWidth: 15)
+                    .stroke(colorDictionary[borderColor] ?? .cyan, lineWidth: 15)
                     .ignoresSafeArea()
                     .background(
                         RoundedRectangle(cornerRadius: 65)
                             .fill(Color.clear)
                             .ignoresSafeArea()
                     )
-                    .shadow(color: Color.blue.opacity(1), radius: 15, x: 0, y: 0)
+                    .shadow(color: colorDictionary[borderColor] ?? .cyan, radius: 15, x: 0, y: 0)
                     .ignoresSafeArea()
             }
             VStack{
@@ -38,6 +55,7 @@ struct CalendarView: View {
                 .padding()
                 
                 Text("Motivation Gonna be right Here Soon")
+                    .foregroundColor(colorDictionary[textColor] ?? .black)
                     .bold()
                     .font(.largeTitle)
                     .padding()
