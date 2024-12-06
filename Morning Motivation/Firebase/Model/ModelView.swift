@@ -1,16 +1,16 @@
+////
+////  ModelView.swift
+////  Morning Motivation
+////
+////  Created by Jonas R. Gregory on 11/21/24.
+////
 //
-//  ModelView.swift
-//  Morning Motivation
+//import SwiftUI
 //
-//  Created by Jonas R. Gregory on 11/21/24.
+//import Foundation
 //
-
-import SwiftUI
-
-import Foundation
-
-struct Quote: Identifiable, Hashable {
-    var quote: String
-    var name: String
-    var id: String
-}
+//struct Quote: Identifiable, Hashable {
+//    var quote: String
+//    var name: String
+//    var id: String
+//}
