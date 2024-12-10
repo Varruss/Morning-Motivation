@@ -45,6 +45,9 @@ struct MotivationOfTheDay: View {
 
     @StateObject var viewModel = ReadViewModel()
 
+    
+    @AppStorage("timer") var number = 0
+
     var body: some View {
         Color(colorDictionary[backgroundColor] ?? .white)
             .ignoresSafeArea()
@@ -73,8 +76,7 @@ struct MotivationOfTheDay: View {
                 
                 if viewModel.value != nil {
                     Text(viewModel.value!)
-                                  .padding()
-                                  
+                       
                 } else {
                     Text("Display value")
                                   .padding()

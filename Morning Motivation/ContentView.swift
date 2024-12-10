@@ -47,6 +47,7 @@ struct ContentView: View {
                 .tabItem {
                     if OutlineOn == true {
                         Label("", systemImage: "gear")
+                           
                     } else {
                         Text("Settings")
                     }

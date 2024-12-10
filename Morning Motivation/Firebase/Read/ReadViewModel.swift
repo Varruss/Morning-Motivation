@@ -56,7 +56,9 @@ class ReadViewModel: ObservableObject {
     
     @Published var value: String? = nil
     @Published var object: ObjectView? = nil
+    @AppStorage("timer") var number = 0
     func readValue() {
+        
         ref.child("0").child("quote").observeSingleEvent(of: .value) { snapshot in
             self.value = snapshot.value as? String
         }
