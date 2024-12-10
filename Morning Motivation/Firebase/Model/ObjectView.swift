@@ -6,11 +6,14 @@
 //
 
 import Foundation
-class ObjectView: Encodable {
-    var id: String = ""
-    var quote: String = ""
-    var name: String = ""
+import SwiftUI
+
+struct ObjectView: Encodable, Decodable {
+    var id: String
+    var name: String
+    var quote: String
 }
+
 extension Encodable {
     var toDictionary: [String: Any]? {
         guard let data = try? JSONEncoder().encode(self) else {
