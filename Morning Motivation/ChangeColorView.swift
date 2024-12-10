@@ -43,11 +43,42 @@ struct ChangeColorView: View {
                             .ignoresSafeArea()
                     }
                     VStack{
-                        Text("Customize UI")
+                            Text("Customize UI")
                             .foregroundColor(colorDictionary[textColor] ?? .black)
                             .font(.largeTitle)
                             .bold()
                         Spacer()
+                        HStack{
+                            Button {
+                                backgroundColor = "white"
+                                textColor = "black"
+                                borderColor = "cyan"
+                            } label: {
+                                Text("Light Mode")
+                                    .font(.system(size: 25))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .frame(minWidth: 150)
+                                    .background(Color.blue)
+                                    .cornerRadius(12)
+                            }
+                            Button {
+                                backgroundColor = "black"
+                                textColor = "white"
+                                borderColor = "cyan"
+                            } label: {
+                                Text("Dark Mode")
+                                    .font(.system(size: 25))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .frame(minWidth: 150)
+                                    .background(Color.blue)
+                                    .cornerRadius(12)
+                            }
+                        }
+
                         Menu {
                             ForEach(colorDictionary.keys.sorted(), id: \.self) { colorKey in
                                 Button(colorKey.capitalized) {
