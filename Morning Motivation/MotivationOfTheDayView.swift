@@ -123,6 +123,7 @@ struct MotivationOfTheDay: View {
                 tasks[index].isCompleted = false
             }
             lastResetDate = Date()
+            number += 1
         }
     }
 }
