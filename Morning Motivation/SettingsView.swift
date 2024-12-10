@@ -17,6 +17,7 @@ struct SettingsView: View {
     @State var newQuote: String = ""
     @AppStorage("textColor") var textColor = "black"
     @AppStorage("BorderColor") var borderColor = "cyan"
+    @AppStorage("BackgroundColor") var backgroundColor = "white"
     private let colorDictionary: [String: Color] = [
            "black": .black,
            "white": .white,
@@ -35,6 +36,9 @@ struct SettingsView: View {
     @State private var selectedOption: String = "Completed Tasks"
     @State private var dropDown = false
     var body: some View {
+        Color(colorDictionary[backgroundColor] ?? .white)
+            .ignoresSafeArea()
+            .overlay(
         ZStack{
             if OutlineOn == true {
                 RoundedRectangle(cornerRadius: 65)
@@ -115,6 +119,7 @@ struct SettingsView: View {
                     )
                     .shadow(color: colorDictionary[borderColor] ?? .cyan, radius: 15, x: 0, y: 0)
                     .ignoresSafeArea()
+                    
             }
             else {
                 VStack{
@@ -189,7 +194,7 @@ struct SettingsView: View {
                 }
             }
         }
-     
+     )
     }
     func submitAQuote(){
         

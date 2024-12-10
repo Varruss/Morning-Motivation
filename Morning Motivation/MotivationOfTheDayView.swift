@@ -21,6 +21,7 @@ struct MotivationOfTheDay: View {
     @AppStorage("lastResetDate") private var lastResetDate: Date = Date()
     @AppStorage("textColor") var textColor = "black"
     @AppStorage("BorderColor") var borderColor = "cyan"
+    @AppStorage("BackgroundColor") var backgroundColor = "white"
     private let colorDictionary: [String: Color] = [
            "black": .black,
            "white": .white,
@@ -45,6 +46,9 @@ struct MotivationOfTheDay: View {
     @StateObject var viewModel = ReadViewModel()
 
     var body: some View {
+        Color(colorDictionary[backgroundColor] ?? .white)
+            .ignoresSafeArea()
+            .overlay(
         ZStack {
             if OutlineOn {
                 RoundedRectangle(cornerRadius: 65)
@@ -107,6 +111,7 @@ struct MotivationOfTheDay: View {
                 viewModel.readValue()
             }
         }
+        )
     }
 
     private func checkForDailyReset() {
