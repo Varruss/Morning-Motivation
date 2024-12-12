@@ -69,27 +69,7 @@ class ReadViewModel: ObservableObject {
             self.value = snapshot.value as? String
         }
     }
-//    func check() -> Int {
-//            if let referenceDate = UserDefaults.standard.object(forKey: "reference") as? Date {
-//                // reference date has been set, now check if date is not today
-//                if !Calendar.current.isDateInToday(referenceDate) {
-//                    // if date is not today, do things
-//                    // update the reference date to today
-//                    UserDefaults.standard.set(Date(), forKey: "reference")
-//                    number += 1
-//                    return number
-//                }
-//            } else {
-//                // reference date has never been set, so set a reference date into UserDefaults
-//                UserDefaults.standard.set(Date(), forKey: "reference")
-//                number += 1
-//
-//                return number
-//            }
-//        number += 1
-//
-//            return 0
-//        }
+    
 //    func readObject() {
 //        ref.child("0").observeSingleEvent(of: .value) { snapshot in
 //              
