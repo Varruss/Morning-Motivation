@@ -14,8 +14,9 @@ class WriteViewModel: ObservableObject {
     
     private var number = 0
     func pushNewValue(value: String) {
+        number += 1
         //  ref.childByAutoId().setValue(value)
-        ref.child("Sumbitted Quote").setValue(value)
+        ref.child("W\(number)").child("Summitted Quote").setValue(value)
     }
     
 //    func pushObject(){
