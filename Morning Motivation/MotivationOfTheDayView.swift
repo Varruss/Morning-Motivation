@@ -14,7 +14,7 @@ struct Task: Identifiable {
 }
 
 struct MotivationOfTheDay: View {
-
+    @Binding var deletedTasks: [String]
     @AppStorage("isOn") var isOn = true
     @AppStorage("OutlineOn") var OutlineOn = true
     @AppStorage("ColorScheme") var ColorScheme = false
@@ -47,7 +47,12 @@ struct MotivationOfTheDay: View {
 
     
     @AppStorage("timer") var number = 0
-
+    
+        @State var showingAlert1 = false
+        @State var showingAlert2 = false
+        @State private var taskToDelete: Task? = nil
+        @State var newTask: String
+        
     var body: some View {
         Color(colorDictionary[backgroundColor] ?? .white)
             .ignoresSafeArea()
@@ -86,6 +91,56 @@ struct MotivationOfTheDay: View {
                 Spacer()
                 if isOn {
                     VStack {
+                        HStack {
+                                      Text("To-Do:")
+                                          .fontWeight(.bold)
+                                          .font(.largeTitle)
+                                      Spacer()
+                                          .frame(width: 130)
+                                      Button {
+                                          showingAlert2.toggle()
+                                      } label: {
+                                          Image(systemName: "trash")
+                                              .resizable()
+                                      }
+                                      .frame(width: 22, height: 25)
+                                      .alert("Press a Task to Delete It", isPresented: $showingAlert2) {
+                                          
+                                          ForEach(tasks.indices, id: \.self) { index in
+                                              Button {
+                                                  taskToDelete = tasks[index]
+                                                  deletedTasks.append(tasks[index].name)
+                                                  // Delete the task from the tasks array
+                                                  tasks.remove(at: index)
+                                                  
+                                              } label: {
+                                                  Text(tasks[index].name)
+                                              }
+                                              
+                                          }
+                                          Button("Cancel", role: .cancel) { }
+                                      }
+                                      Spacer()
+                                          .frame(width: 15)
+                                      Button {
+                                          showingAlert1.toggle()
+                                          newTask = ""
+                                      } label: {
+                                          Image(systemName: "plus")
+                                              .resizable()
+                                      }
+                                      .frame(width: 25, height: 25)
+                                      .alert("Add a New Task", isPresented: $showingAlert1) {
+                                          TextField("type task here...", text: $newTask)
+                                          
+                                              .font(.custom("Arial", size: 16))
+                                              .frame(width: 50, height: 30)
+                                          Button("OK", action: addATask)
+                                          Button("Cancel", role: .cancel) { }
+                                      }
+                                      
+                                      
+                                  }
                         ForEach(tasks.indices, id: \.self) { index in
                             HStack {
                                 Text(tasks[index].name)
@@ -129,6 +184,9 @@ struct MotivationOfTheDay: View {
             number += 1
         }
     }
+    func addATask(){
+            tasks.append(Task(name: newTask, isCompleted: false))
+        }
 //   private func check() -> Int {
 //            if let referenceDate = UserDefaults.standard.object(forKey: "reference") as? Date {
 //                // reference date has been set, now check if date is not today
@@ -153,5 +211,5 @@ struct MotivationOfTheDay: View {
 }
 
 #Preview {
-    MotivationOfTheDay()
+    ContentView()
 }

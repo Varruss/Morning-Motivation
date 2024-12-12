@@ -10,7 +10,7 @@ import SwiftUI
 
 
 struct ContentView: View {
-    
+    @State private var deletedTasks: [String] = [""]
     @AppStorage("OutlineOn") var OutlineOn = true
     @AppStorage("ColorScheme") var ColorScheme = false
     var body: some View {
@@ -24,15 +24,15 @@ struct ContentView: View {
                         Text("Calendar")
                     }
                 }
-            MotivationOfTheDay()
-                .preferredColorScheme(ColorScheme ? .dark : .light)
-                .tabItem {
-                    if OutlineOn == true {
-                        Label("", systemImage: "star")
-                    } else {
-                        Text("Motivation")
-                    }
-                }
+            MotivationOfTheDay(deletedTasks: $deletedTasks, newTask: "")
+                            .preferredColorScheme(ColorScheme ? .dark : .light)
+                            .tabItem {
+                                if OutlineOn == true {
+                                    Label("", systemImage: "star")
+                                } else {
+                                    Text("Motivation")
+                                }
+                            }
             ChangeColorView()
                 .preferredColorScheme(ColorScheme ? .dark: .light)
                 .tabItem {
@@ -42,16 +42,15 @@ struct ContentView: View {
                         Text("Customize")
                     }
                 }
-            SettingsView()
-                .preferredColorScheme(ColorScheme ? .dark : .light)
-                .tabItem {
-                    if OutlineOn == true {
-                        Label("", systemImage: "gear")
-                           
-                    } else {
-                        Text("Settings")
-                    }
-                }
+            SettingsView(deletedTasks: $deletedTasks)
+                            .preferredColorScheme(ColorScheme ? .dark : .light)
+                            .tabItem {
+                                if OutlineOn == true {
+                                    Label("", systemImage: "gear")
+                                } else {
+                                    Text("Settings")
+                                }
+                            }
         }
     }
 }
