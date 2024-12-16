@@ -59,7 +59,7 @@ class ReadViewModel: ObservableObject {
     @AppStorage("timer") var number = 0
     func readValue() {
         
-        ref.child("\(number)").child("quote").observeSingleEvent(of: .value) { snapshot in
+        ref.child("quotes").child("\(number)").child("quote").observeSingleEvent(of: .value) { snapshot in
             self.value = snapshot.value as? String
         }
 
