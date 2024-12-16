@@ -28,6 +28,9 @@ struct SubmitQuoteView: View {
            "cyan": .cyan,
            "teal": .teal
        ]
+    @StateObject var viewModel = WriteViewModel()
+    @State var content: String = ""
+
     var body: some View {
         ZStack{
             if OutlineOn == true {
@@ -48,26 +51,31 @@ struct SubmitQuoteView: View {
                     .font(.largeTitle)
                     .padding(35)
                 Spacer()
-                TextField("Enter your quote here", text: $newQuote)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                    .frame(width: 350)
-                Button(action: {
-                    // to firebase
-                }) {
-                    Text("Submit")
-                        .font(.title2)
-                        .frame(maxWidth: .infinity)
+                Text("Enter Here")
+                    .bold()
+                    .font(.title2)
+                    TextEditor(text: $content)
                         .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-
-                }
+                        .frame(width: 350, height: 100)
+                        .multilineTextAlignment(.center)
+                        .background(.blue)
+                Spacer()
+                    Button {
+                        viewModel.pushNewValue(value: content)
+                    } label: {
+                        Text("Push")
+                            .padding()
+                            .font(.title2)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
                 .frame(width: 325)
                 .padding()
-                .disabled(newQuote.isEmpty)
-                .opacity(newQuote.isEmpty ? 0.5 : 1.0)
+                .disabled(content.isEmpty)
+                .opacity(content.isEmpty ? 0.5 : 1.0)
             }
         }
     }

@@ -14,9 +14,10 @@ class WriteViewModel: ObservableObject {
     
     private var number = 0
     func pushNewValue(value: String) {
-        
+        let uuid = NSUUID().uuidString.lowercased()
+
         //  ref.childByAutoId().setValue(value)
-        ref.child("W").child("Summitted Quote").setValue(value)
+        ref.child("W").child("sumbitted quote id; \(uuid)").setValue(value)
         number += 1
     }
     
