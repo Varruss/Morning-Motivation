@@ -180,8 +180,12 @@ struct MotivationOfTheDay: View {
             for index in tasks.indices {
                 tasks[index].isCompleted = false
             }
+           
             lastResetDate = Date()
+        }
+        else {
             number += 1
+
         }
     }
     func addATask(){
