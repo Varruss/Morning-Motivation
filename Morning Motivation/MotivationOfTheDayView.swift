@@ -81,6 +81,8 @@ struct MotivationOfTheDay: View {
                 
                 if viewModel.value != nil {
                     Text(viewModel.value!)
+                        .frame(width: 250, height: 140)
+                        .frame(alignment: .center)
                        
                 } else {
                     Text("Display value")
